@@ -19,7 +19,13 @@ Everything set up? Then let's fetch the ondevice client software:
 
     curl -sSL https://repo.ondevice.io/install_deb.sh | bash -e
 
-Once that's installed, you can run `ondevice setup` and enter the API keys that's been generated for your account  
+Once that's installed, let's switch to our newly created user:
+
+    su - myuser
+
+From now on, everything is done as `myuser`
+
+Run `ondevice setup` and enter the API keys that's been generated for your account  
 
     $ ondevice setup
     User: ...
@@ -40,8 +46,11 @@ Client:
 
 Ok, so our new device's ID is `hello.abcdef` (yours will be different. copy it somewhere, we'll need that later)
 
+Keep the device terminal running (the docker container will be destroyed as soon as you exit it - we've specified the `--rm` flag after all)
+
 ### on the client
 
+Open a new terminal on the client and install `ondevice` again (using the `install_deb.sh` line) if you haven't done so already
 
     $ ondevice ssh myuser@abcdef
     Password:
