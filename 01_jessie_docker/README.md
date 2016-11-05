@@ -62,9 +62,17 @@ That's basically it. Now you can do everything SSH has to offer.
 The only difference to running SSH directly is the `ondevice ` prefix and the different host names.
 
 - Running a command and exit: `ondevice ssh user@device ps -ef | grep ondevice`  
-  `grep will actually run locally in the above example`
+  (`grep` will actually run locally in the above example)
 - Port forwarding: `ondevice ssh user@device -L 1234:localhost:80`
 - Proxy: `ondevice ssh user@device -D 1080`  
   Now set your browser's SOCKS proxy to `localhost:1080` and you'll browse the web as if you were on the device's network
-- `rsync`: `ondevice rsync user@device:/etc/motd /tmp/motd`
+- rsync: `ondevice rsync user@device:/etc/motd /tmp/motd`
 - ...
+
+
+Further steps
+-------------
+
+- Have a look at `ondevice help`
+- device properties are perfect for automated tasks. Just write a cron script that periodically runs `ondevice list --json --props`, run your target script on devices that lack a certain identifying property (using `ondevice ssh`) and if that script ran successfully, add the identifying propery for that device (`ondevice device <devId> set foo=bar`)  
+
